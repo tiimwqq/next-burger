@@ -22,7 +22,7 @@ export const Categories: React.FC = () => {
     return (
         <div className='inline-flex gap-1 bg-gray-50 p-1 rounded-2xl text-sm  '>
             {cats.map(({ name, id }, i) => (
-                <a key={i} href="" className={cn('flex items-center font-bold rounded-2xl h-11 px-5',
+                <a key={i} className={cn('flex items-center font-bold rounded-2xl h-11 px-5',
                     activeCategoryId === id && 'bg-white shadow-md shadow-gray-200 text-primary')}
                     href={`/#${name}`} > 
                     <button>{name}</button>

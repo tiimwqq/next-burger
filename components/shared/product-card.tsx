@@ -13,7 +13,7 @@ interface Props {
     className?: string;
 }
 
-export const ProductCard: React.FC<Props> = ({ id, name, price, imageUrl, description, className }) => {
+export const ProductCard: React.FC<Props> = ({ id, name, price, imageUrl, description}) => {
     return (
         <div className='flex justify-center flex-col max-w-[280px] min-h-[260px] max-h-[440px] my-5 group'>
             <Link href={`/product/${id}`}>

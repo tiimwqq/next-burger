@@ -82,8 +82,8 @@ export const Filters: React.FC = () => {
                 ]}
             />
             {/*  кнопка */}
-           <Button className='my-5 w-full'>
-            применить
+           <Button className='my-5 w-full py-6'>
+            Применить
            </Button>
         </div>
     );

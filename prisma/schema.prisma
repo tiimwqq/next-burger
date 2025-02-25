@@ -1,0 +1,174 @@
+//генерируем схему для prisma-client
+generator client {
+    provider = "prisma-client-js"
+}
+
+//нам нужно обьяснить призме с какой базой данных
+//тебе надо работать
+
+datasource db {
+    provider = "postgresql"
+    url      = env("POSTGRES_URL") //указывает куда делать подключение, к какой базе данных
+}
+
+//чтобы создать таблицу нужно написать model
+//1название 2тип 3доп параметры
+
+model Category {
+    id Int @id @default(autoincrement())
+
+    name     String    @unique
+    products Product[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Product {
+    id Int @id @default(autoincrement())
+
+    name        String
+    imageUrl    String
+    description String?
+
+    category   Category @relation(fields: [categoryId], references: [id])
+    categoryId Int
+
+    ingredients  Ingredient[]
+    productItems ProductItem[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model ProductItem {
+    id Int @id @default(autoincrement())
+
+    size       String?
+    price      Int?
+    burgerType Int?
+
+    product   Product @relation(fields: [productId], references: [id])
+    productId Int
+
+    cartItems CartItem[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Ingredient {
+    id Int @id @default(autoincrement())
+
+    name     String
+    imageUrl String
+    price    Int
+    products Product[]
+
+    cartItems CartItem[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model User {
+    id Int @id @default(autoincrement())
+
+    fullName String
+    email    String  @unique
+    password String
+    cart     Cart?
+    orders   Order[]
+
+    role UserRole @default(USER)
+
+    verificationCode VerificationCode?
+    verified         DateTime
+
+    provider   String?
+    providerId String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Cart {
+    id Int @id @default(autoincrement())
+
+    user       User? @relation(fields: [userId], references: [id])
+    userId     Int   @unique
+    totalAmout Int   @default(0)
+
+    token     String
+    cartItems CartItem[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model CartItem {
+    id Int @id @default(autoincrement())
+
+    productItem   ProductItem @relation(fields: [productItemId], references: [id])
+    productItemId Int
+
+    cart   Cart @relation(fields: [cartId], references: [id])
+    cartId Int
+
+    quantity    Int
+    ingredients Ingredient[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Order {
+    id Int @id @default(autoincrement())
+
+    user   User? @relation(fields: [userId], references: [id])
+    userId Int?
+
+    token String
+
+    totalAmount Int
+    status      OrderStatus
+
+    paymentId String? //для системы оплаты
+
+    items Json
+
+    fullName String
+    email    String
+    phone    String
+    address  String
+    comment  String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model VerificationCode {
+    id Int @id @default(autoincrement())
+
+    user   User @relation(fields: [userId], references: [id])
+    userId Int  @unique
+
+    code String
+
+    createdAt DateTime @default(now())
+
+    @@unique([userId, code])
+}
+
+// код подтверждающий что пользователь зарегестрирован
+
+enum OrderStatus {
+    PENDING
+    SUCCEEDED
+    CANCELLED
+}
+
+enum UserRole {
+    USER
+    ADMIN
+}

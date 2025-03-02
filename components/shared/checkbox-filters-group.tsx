@@ -10,12 +10,11 @@ type Item = FilterChecboxProps;
 interface Props {
     title: string;
     items: Item[];
-    defaultItems: Item[];
+    defaultItems?: Item[];
     limit?: number;
     searchInputPlaceholder?: string;
     onClickCheckBox?: (id: string) => void;
     defaultValue?: string;
-    className: string;
     loading?: boolean
     selectedIds?: Set<string>;
     name?: string;
@@ -28,17 +27,16 @@ export const CheckboxFiltersGroup: React.FC<Props> = (
         limit = 5,
         searchInputPlaceholder = 'поиск...',
         onClickCheckBox,
-        defaultValue,
         loading,
         selectedIds,
-        name
+        name,
     }
 ) => {
 
     const [showAll, setShowAll] = useState(false);
     const [searchValue, setSearchValue] = useState('');
 
-    const list = showAll ? items : defaultItems.slice(0, limit); //создаем список с элементами при нажатии на кнопку "Показать все"
+    const list = showAll ? items : (defaultItems || items).slice(0, limit); //создаем список с элементами при нажатии на кнопку "Показать все"
 
     if (loading) {
         return (

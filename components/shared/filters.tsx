@@ -1,11 +1,17 @@
+'use client'
+
 import React from 'react';
 import { FilterCheckbox } from '../ui/filter-checkbox';
 import { Input } from '../ui/input';
 import { RangeSlider } from '../ui/range-slider';
 import { CheckboxFiltersGroup } from './checkbox-filters-group';
 import { Button } from '../ui/button';
+import { useFilterIngredients } from '@/app/hooks/useFilterIngredients';
 
 export const Filters: React.FC = () => {
+    const {ingredients, loading} = useFilterIngredients();
+    
+
     return (
         <div className='flex flex-col mt-4 gap-3'>
             {/* фильтрация */}
@@ -30,61 +36,14 @@ export const Filters: React.FC = () => {
                 title='Ингредиенты'
                 className='mt-5'
                 limit={5}
-                defaultItems={[
-                    {
-                        text: 'Сыр',
-                        value: '1',
-                    },
-                    {
-                        text: 'Красный лук',
-                        value: '1',
-                    },
-                    {
-                        text: 'Халапеньо',
-                        value: '1',
-                    },
-                    {
-                        text: 'Авокадо',
-                        value: '1',
-                    },
-                    {
-                        text: 'Грибы',
-                        value: '1',
-                    },
-                ]}
-                items={[
-                    { text: 'Булочка', value: '1' },
-                    { text: 'Говяжья котлета', value: '1' },
-                    { text: 'Куриная котлета', value: '1' },
-                    { text: 'Рыбная котлета', value: '1' },
-                    { text: 'Веганская котлета', value: '1' },
-                    { text: 'Сыр', value: '1' },
-                    { text: 'Листья салата', value: '1' },
-                    { text: 'Помидор', value: '1' },
-                    { text: 'Огурец', value: '1' },
-                    { text: 'Маринованный огурец', value: '1' },
-                    { text: 'Красный лук', value: '1' },
-                    { text: 'Белый лук', value: '1' },
-                    { text: 'Халапеньо', value: '1' },
-                    { text: 'Авокадо', value: '1' },
-                    { text: 'Майонез', value: '1' },
-                    { text: 'Кетчуп', value: '1' },
-                    { text: 'Горчица', value: '1' },
-                    { text: 'Соус барбекю', value: '1' },
-                    { text: 'Чесночный соус', value: '1' },
-                    { text: 'Сырный соус', value: '1' },
-                    { text: 'Бекон', value: '1' },
-                    { text: 'Грибы', value: '1' },
-                    { text: 'Яйцо', value: '1' },
-                    { text: 'Луковые кольца', value: '1' },
-                    { text: 'Ананас', value: '1' },
-                    { text: 'Хрустящий лук', value: '1' },
-                ]}
+                defaultItems={ingredients.slice(0, 6)}
+                items={ingredients}
+                loading={loading}
             />
             {/*  кнопка */}
-           <Button className='my-5 w-full py-6'>
-            Применить
-           </Button>
+            <Button className='my-5 w-full py-6'>
+                Применить
+            </Button>
         </div>
     );
 };

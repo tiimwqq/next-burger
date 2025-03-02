@@ -1,9 +1,9 @@
 'use client'
 
 import { Search } from 'lucide-react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, {  useRef, useState } from 'react';
 import { Input } from './ui/input';
-import { useClickAway } from 'react-use';
+import { useClickAway, useDebounce } from 'react-use';
 import Link from 'next/link';
 import { Api } from '@/services/api-client';
 import { Product } from '@prisma/client';
@@ -19,12 +19,21 @@ export const SearchBar: React.FC = () => {
         setFocused(false);
     })
 
-    useEffect(() => {
-        Api.products.search(searchValue).then(items => {
-            console.log("Ответ API:", items);
-            setProducts(items || []); // Гарантируем, что будет массив
-        });
-    }, [searchValue])
+    useDebounce(async () => {
+        try {
+            await Api.products.search(searchValue).then(items => {
+                console.log("Ответ API:", items);
+                setProducts(items || []); // Гарантируем, что будет массив
+            });
+        } catch (error) {
+            console.error("Произошла ошибка:", error);
+        }
+    }, 150, [searchValue])
+
+    const onClickCleanSearch = () => {
+        setSearchValue('');
+        setFocused(false);
+    }
 
     return (
         <>
@@ -38,12 +47,16 @@ export const SearchBar: React.FC = () => {
                     onChange={(e) => setSearchValue(e.target.value)}
                     onFocus={() => setFocused(true)}
                 />
-                <div
-                    className={`absolute w-[764px] bg-white rounded-xl p-2 top-14 shadow-md transition-all duration-300 opacity-0 z-30 mt-2
-  ${focused ? 'top-12 opacity-100 shadow-[0_0_8px_1px_rgba(255,255,255,0.3)]' : ''}`}
+                {products.length > 0 && <div
+                    className={`absolute w-full max-w-[764px]  bg-white rounded-xl p-2 top-14 shadow-md transition-all duration-300 opacity-0 z-30 mt-2
+                    ${focused ? 'top-12 opacity-100 shadow-[0_0_8px_1px_rgba(255,255,255,0.3)]' : ''}`}
                 >
                     {products.map((product) => (
-                        <Link key={product.id} href={`/product/${product.id}`} className='flex items-center gap-1 hover:bg-primary/10 rounded-sm px-2'>
+                        <Link 
+                        onClick={onClickCleanSearch}
+                        key={product.id} 
+                        href={`/product/${product.id}`} 
+                        className='flex items-center gap-1 hover:bg-primary/10 rounded-sm px-2 '>
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img src={product.imageUrl} alt={product.name} className='h-14 w-14' />
                             <div className="px-3 py-2 text-sm text-gray-500">
@@ -51,7 +64,7 @@ export const SearchBar: React.FC = () => {
                             </div>
                         </Link>
                     ))}
-                </div>
+                </div>}
             </div>
 
         </>

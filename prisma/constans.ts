@@ -10,12 +10,12 @@ export const categories = [
 
 export const burgerIngredients = [
     { name: "Булочка с кунжутом", price: 49, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/quarter_pounder_bun" },
-    { name: "Булочка обыкновенная", price: 49, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/regular_bun" },
+    { name: "Булочка ", price: 49, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/regular_bun" },
     { name: "Котлета говяжья", price: 99, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/DC_Ingredient_202111_00006-417__4076_QuarterPound_FreshBeefPatty_1564x1564" },
     { name: "Котлета куриная", price: 89, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/t-crispy-chicken-fillet" },
     { name: "Сыр чеддер", price: 59, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/ingredient_american_cheese_180x180" },
     { name: "измельченный салат", price: 39, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/shredded_lettuce" },
-    { name: "Маринованные огурцы", price: 29, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/pickles" },
+    { name: "огурцы", price: 29, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/pickles" },
     { name: "Свежие томаты", price: 49, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/Ingredients_Tomato_180x180" },
     { name: "лук", price: 29, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/DC_Ingredient_202110_00028-075__0909_SlicedOnions_1564x1564" },
     { name: "Соус барбекю", price: 19, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/DC_Ingredient_202111_02679-243__0912_Ketchup_1564x1564" },

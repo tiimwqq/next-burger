@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { FilterChecboxProps, FilterCheckbox } from '../ui/filter-checkbox';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
+import { Skeleton } from '../ui/skeleton';
 
 type Item = FilterChecboxProps;
 interface Props {
@@ -15,6 +16,7 @@ interface Props {
     onChange?: (values: string[]) => void;
     defaultValue?: string;
     className: string;
+    loading?: boolean
 }
 export const CheckboxFiltersGroup: React.FC<Props> = (
     {
@@ -25,7 +27,8 @@ export const CheckboxFiltersGroup: React.FC<Props> = (
         searchInputPlaceholder = 'поиск...',
         onChange,
         defaultValue,
-        className
+        className,
+        loading
     }
 ) => {
 
@@ -33,6 +36,20 @@ export const CheckboxFiltersGroup: React.FC<Props> = (
     const [searchValue, setSearchValue] = useState('');
 
     const list = showAll ? items : defaultItems.slice(0, limit); //создаем список с элементами при нажатии на кнопку "Показать все"
+
+    if (loading) {
+        return (
+            <>
+                <h2 className='text-base font-bold mb-4'>{title}</h2>
+                <div className="flex flex-col gap-4 max-h-96 overflow-auto scrollbar pr-2">
+                    {...Array(limit).fill(0).map((_, index) => (
+                        <Skeleton key={index} className='h-6 mb-1'/>
+                    ))}
+                </div>
+            </>
+
+        )
+    }
 
     return (
         <div className=''>

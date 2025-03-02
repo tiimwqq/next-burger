@@ -13,10 +13,12 @@ interface Props {
     defaultItems: Item[];
     limit?: number;
     searchInputPlaceholder?: string;
-    onChange?: (values: string[]) => void;
+    onClickCheckBox?: (id: string) => void;
     defaultValue?: string;
     className: string;
     loading?: boolean
+    selectedIds?: Set<string>;
+    name?: string;
 }
 export const CheckboxFiltersGroup: React.FC<Props> = (
     {
@@ -25,10 +27,11 @@ export const CheckboxFiltersGroup: React.FC<Props> = (
         defaultItems,
         limit = 5,
         searchInputPlaceholder = 'поиск...',
-        onChange,
+        onClickCheckBox,
         defaultValue,
-        className,
-        loading
+        loading,
+        selectedIds,
+        name
     }
 ) => {
 
@@ -43,7 +46,7 @@ export const CheckboxFiltersGroup: React.FC<Props> = (
                 <h2 className='text-base font-bold mb-4'>{title}</h2>
                 <div className="flex flex-col gap-4 max-h-96 overflow-auto scrollbar pr-2">
                     {...Array(limit).fill(0).map((_, index) => (
-                        <Skeleton key={index} className='h-6 mb-1'/>
+                        <Skeleton key={index} className='h-6 mb-1' />
                     ))}
                 </div>
             </>
@@ -75,8 +78,9 @@ export const CheckboxFiltersGroup: React.FC<Props> = (
                             text={item.text}
                             value={item.value}
                             endAdornment={item.endAdornment}
-                            checked={false}
-                            onCheckedChange={(boolean) => console.log(boolean)}
+                            checked={selectedIds?.has(item.value)}
+                            onCheckedChange={() => onClickCheckBox?.(item.value)}
+                            name={name}
                         />
                     ))}
             </div>

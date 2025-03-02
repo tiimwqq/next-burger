@@ -6,10 +6,10 @@ import { Input } from '../ui/input';
 import { RangeSlider } from '../ui/range-slider';
 import { CheckboxFiltersGroup } from './checkbox-filters-group';
 import { Button } from '../ui/button';
-import { useFilterIngredients } from '@/app/hooks/useFilterIngredients';
+import { useFilterIngredients } from '@/hooks/useFilterIngredients';
 
 export const Filters: React.FC = () => {
-    const {ingredients, loading} = useFilterIngredients();
+    const {ingredients, loading, toggleId, selectedIds} = useFilterIngredients();
     
 
     return (
@@ -18,8 +18,8 @@ export const Filters: React.FC = () => {
             <div className="flex flex-col items-start">
                 <h2 className='text-xl font-bold'>Фильтрация</h2>
                 <div className="flex flex-col gap-4 mt-4">
-                    <FilterCheckbox text="Можно собирать" value="1" />
-                    <FilterCheckbox text="Новинки" value="2" />
+                    <FilterCheckbox name='ewf' text="Можно собирать" value="1" />
+                    <FilterCheckbox name='wef' text="Новинки" value="2" />
                 </div>
             </div>
             {/* цена от  идо */}
@@ -39,6 +39,9 @@ export const Filters: React.FC = () => {
                 defaultItems={ingredients.slice(0, 6)}
                 items={ingredients}
                 loading={loading}
+                onClickCheckBox={toggleId}
+                selectedIds={selectedIds}
+                name='ingredient'
             />
             {/*  кнопка */}
             <Button className='my-5 w-full py-6'>

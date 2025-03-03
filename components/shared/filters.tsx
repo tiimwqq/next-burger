@@ -1,31 +1,16 @@
 'use client'
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Input } from '../ui/input';
 import { RangeSlider } from '../ui/range-slider';
 import { CheckboxFiltersGroup } from './checkbox-filters-group';
 import { Button } from '../ui/button';
-import { useFilterIngredients } from '@/hooks/useFilterIngredients';
-import { useSet } from 'react-use';
-
-type PriceProps = {
-    priceFrom: number;
-    priceTo: number;
-}
-
+import { useFilters, useIngredients, useQueryFilters } from '@/hooks';
 export const Filters: React.FC = () => {
-    const { ingredients, loading, toggleId, selectedIds } = useFilterIngredients();
-    const [price, setprice] = useState<PriceProps>({ priceFrom: 0, priceTo: 5000 });
-    const [sizes, { toggle: toggleSizes }] = useSet(new Set<string>([]));
+    const { selectedIngredients, price, sizes, setPrice, toggleSizes, toggleIngredients, updatePrice } = useFilters();
+    const { ingredients, loading } = useIngredients();
 
-
-    const updatePrice = (name: keyof PriceProps, value: number) => {
-        setprice({
-            ...price,
-            [name]: value
-        })
-    }
-
+    useQueryFilters({ price, sizes, selectedIngredients });
 
     return (
         <div className='flex flex-col mt-4 gap-3'>
@@ -41,7 +26,7 @@ export const Filters: React.FC = () => {
                             { text: 'большой', value: 'большой' },
                         ]}
                         onClickCheckBox={toggleSizes}
-                        selectedIds={sizes}
+                        selected={sizes}
                         name='sizes'
                     />
                 </div>
@@ -50,13 +35,24 @@ export const Filters: React.FC = () => {
             <div className="py-4 my-4 border-y border-y-neutral-100 flex flex-col gap-3">
                 <h2 className='text-base font-bold mb-4'>Цена от и до:</h2>
                 <div className="flex gap-3 mb-3">
-                    <Input type='number' placeholder={price.priceFrom.toString()} min={0} max={20000} value={String(price.priceFrom)} onChange={(e) => updatePrice('priceFrom', Number(e.target.value))} />
-                    <Input type='number' placeholder={price.priceTo.toString()} min={0} max={20000} value={String(price.priceTo)} onChange={(e) => updatePrice('priceTo', Number(e.target.value))} />
+                    <Input
+                        type='number'
+                        placeholder='от'
+                        min={0}
+                        max={20000}
+                        value={String(price.priceFrom)}
+                        onChange={(e) => updatePrice('priceFrom', Number(e.target.value))} />
+                    <Input type='number'
+                        placeholder='до'
+                        min={0}
+                        max={20000}
+                        value={String(price.priceTo)}
+                        onChange={(e) => updatePrice('priceTo', Number(e.target.value))} />
                 </div>
                 <RangeSlider
                     min={0} max={5000} step={50}
-                    value={[price.priceFrom, price.priceTo]}
-                    onValueChange={([priceFrom, priceTo]) => setprice({ priceFrom, priceTo })} />
+                    value={[price.priceFrom || 0, price.priceTo || 5000]}
+                    onValueChange={([priceFrom, priceTo]) => setPrice({ priceFrom, priceTo })} />
             </div>
             {/* ингредиенты */}
             <CheckboxFiltersGroup
@@ -65,8 +61,8 @@ export const Filters: React.FC = () => {
                 defaultItems={ingredients.slice(0, 6)}
                 items={ingredients}
                 loading={loading}
-                onClickCheckBox={toggleId}
-                selectedIds={selectedIds}
+                onClickCheckBox={toggleIngredients}
+                selected={selectedIngredients}
                 name='ingredient'
             />
             {/*  кнопка */}

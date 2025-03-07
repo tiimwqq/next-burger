@@ -66,7 +66,7 @@ async function up() {
             ingredients: {
                 connect: burgerIngredients.slice(3, 7)
             },
-            categoryId: 2
+            categoryId: 1
         }
     });
 
@@ -78,7 +78,7 @@ async function up() {
             ingredients: {
                 connect: burgerIngredients.slice(7, 10)
             },
-            categoryId: 3
+            categoryId: 1
         }
     });
 

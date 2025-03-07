@@ -49,7 +49,7 @@ export const SearchBar: React.FC = () => {
                 />
                 {products.length > 0 && <div
                     className={`absolute w-full max-w-[764px]  bg-white rounded-xl p-2 top-14 shadow-md transition-all duration-300 opacity-0 z-30 mt-2
-                    ${focused ? 'top-12 opacity-100 shadow-[0_0_8px_1px_rgba(255,255,255,0.3)]' : ''}`}
+                    ${focused ? 'top-12 opacity-100 shadow-[0_0_8px_1px_rgba(255,255,255,0.3)]' : 'hidden'}`}
                 >
                     {products.map((product) => (
                         <Link 

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import { Button } from '../ui/button';
 import { Plus } from 'lucide-react';
+import { ProductItem } from '@prisma/client';
 
 interface Props {
     id: number;
@@ -11,9 +12,11 @@ interface Props {
     price: number;
     imageUrl: string;
     className?: string;
+    productItems?: ProductItem[]
 }
 
-export const ProductCard: React.FC<Props> = ({ id, name, price, imageUrl, description}) => {
+export const ProductCard: React.FC<Props> = ({ id, name, price, imageUrl, description, productItems}) => {
+    console.log("ProductCard items:", productItems); // Проверяем, есть ли `items`
     return (
         <div className='flex justify-center flex-col max-w-[280px] min-h-[260px] max-h-[440px] my-5 group'>
             <Link href={`/product/${id}`}>

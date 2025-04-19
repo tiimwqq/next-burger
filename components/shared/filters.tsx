@@ -5,34 +5,30 @@ import { Input } from '../ui/input';
 import { RangeSlider } from '../ui/range-slider';
 import { CheckboxFiltersGroup } from './checkbox-filters-group';
 import { Button } from '../ui/button';
-import { useFilters, useIngredients, useQueryFilters } from '@/hooks';
+import { useFilters, useQueryFilters, useRollTypes } from '@/hooks';
 export const Filters: React.FC = () => {
-    const { selectedIngredients, price, sizes, setPrice, toggleSizes, toggleIngredients, updatePrice } = useFilters();
-    const { ingredients, loading } = useIngredients();
+    const { selectedRollsType, price, sizes, setPrice, updatePrice, toggleRollsType } = useFilters();
+    useQueryFilters({ price, sizes, selectedRollsType });
+    const { rollType, loading } = useRollTypes();
 
-    useQueryFilters({ price, sizes, selectedIngredients });
+    const defaultRollTypes = [
+        { value: '', name: 'с лососем' },
+        { value: '', name: 'с креветкой' },
+        { value: '', name: 'с сыром' },
+        { value: '', name: 'Каппа маки' },
+        { value: '', name: 'Калифорния Чикен' },
+        { value: '', name: 'Филадельфия' },
+        { value: '', name: 'Бансай' },
+        { value: '', name: 'Миссури' },
+        { value: '', name: 'Небраска' },
+        { value: '', name: 'Чикен Крим' },
+        { value: '', name: 'Лава' },
+    ]
 
     return (
         <div className='flex flex-col mt-4 gap-3'>
-            {/* фильтрация */}
-            <div className="flex flex-col items-start">
-                <h2 className='text-xl font-bold'>Фильтрация</h2>
-                <div className="mt-5">
-                    <CheckboxFiltersGroup
-                        title='Размеры'
-                        items={[
-                            { text: 'обычный', value: 'обычный' },
-                            { text: 'средний', value: 'средний' },
-                            { text: 'большой', value: 'большой' },
-                        ]}
-                        onClickCheckBox={toggleSizes}
-                        selected={sizes}
-                        name='sizes'
-                    />
-                </div>
-            </div>
             {/* цена от  идо */}
-            <div className="py-4 my-4 border-y border-y-neutral-100 flex flex-col gap-3">
+            <div className="py-4 mb-4 border-b border-b-neutral-100 flex flex-col gap-3">
                 <h2 className='text-base font-bold mb-4'>Цена от и до:</h2>
                 <div className="flex gap-3 mb-3">
                     <Input
@@ -54,17 +50,17 @@ export const Filters: React.FC = () => {
                     value={[price.priceFrom || 0, price.priceTo || 5000]}
                     onValueChange={([priceFrom, priceTo]) => setPrice({ priceFrom, priceTo })} />
             </div>
-            {/* ингредиенты */}
+            {/* тип роллов */}
             <CheckboxFiltersGroup
-                title='Ингредиенты'
+                title='Тип роллов'
                 limit={5}
-                defaultItems={ingredients.slice(0, 6)}
-                items={ingredients}
+                defaultItems={defaultRollTypes}
+                items={rollType}
                 loading={loading}
-                onClickCheckBox={toggleIngredients}
-                selected={selectedIngredients}
-                name='ingredient'
-            />
+                onClickCheckBox={toggleRollsType}
+                selected={selectedRollsType}
+                name='typeRolls' />
+
             {/*  кнопка */}
             <Button className='my-5 w-full py-6'>
                 Применить

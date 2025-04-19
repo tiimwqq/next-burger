@@ -2,16 +2,14 @@ import React from 'react';
 import { Checkbox } from '../ui/checkbox';
 
 export interface FilterChecboxProps {
-    text: string;
+    name: string;
     value: string;
     endAdornment?: React.ReactNode;
     onCheckedChange?: (checked: boolean) => void;
     checked?: boolean;
-    name?: string;
 }
 
 export const FilterCheckbox: React.FC<FilterChecboxProps> = ({
-    text,
     value,
     endAdornment,
     onCheckedChange,
@@ -28,7 +26,7 @@ export const FilterCheckbox: React.FC<FilterChecboxProps> = ({
                 id={`checkbox-${String(value)} ${name}`}
             />
             <label htmlFor={`checkbox-${String(value)} ${name}`} className="leading-none cursor-pointer flex-1">
-                {text}
+                {name}
             </label>
             {endAdornment}
         </div>

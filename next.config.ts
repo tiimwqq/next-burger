@@ -11,6 +11,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "media.dodostatic.net",
       },
+      {
+        protocol: 'https',
+        hostname: 'storage.yandexcloud.net',
+        pathname: '/sushi-market/**', 
+      },
     ],
   },
 };

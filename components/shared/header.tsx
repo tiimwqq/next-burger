@@ -12,11 +12,11 @@ export const Header: React.FC = () => {
             <Container className='flex items-center justify-between py-8 gap-4'>
                 {/* logo */}
                 <Link href={'/'}>
-                    <div className="flex justify-between items-center gap-4 mr-[55px]">
-                        <Image src='/logo.svg' alt='' width={40} height={40} />
+                    <div className="flex justify-between items-center gap-2 mr-[70px]">
+                        <Image src='/qwe.png' alt='' width={80} height={80} />
                         <div className="flex flex-col ">
-                            <h2 className='text-xl font-black whitespace-nowrap'>KAZBURGER</h2>
-                            <span className='text-sm text-gray-500 leading-3 w-[150px]'>вкусней уже некуда</span>
+                            <h2 className='text-xl font-black whitespace-nowrap'>SushkaShop</h2>
+                            <span className='text-sm text-gray-500 leading-3 w-[150px]'>Роллы твоей мечты</span>
                         </div>
                     </div>
                 </Link>

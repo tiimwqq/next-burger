@@ -7,8 +7,10 @@
 // 3. Лучшая обработка ошибок: с единой точкой входа вы можете обрабатывать ошибки  
 import * as products from './products';
 import * as ingredients from './ingredients';
+import * as rollType from './rollTypes';
 
 export const Api = {
     products,
-    ingredients
+    ingredients,
+    rollType
 }  

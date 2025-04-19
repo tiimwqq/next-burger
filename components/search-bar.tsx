@@ -38,11 +38,11 @@ export const SearchBar: React.FC = () => {
     return (
         <>
             {focused && <div className={`fixed top-0 left-0 right-0 bottom-0 z-30 bg-black/50 `}></div>}
-            <div ref={ref} className="relative w-full z-30">
+            <div ref={ref} className="relative w-full z-30 mx-4">
                 <Search size={16} className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 border-none' />
                 <Input className={`max-w-[764px] border-none bg-gray-50 pl-10 
                 `}
-                    placeholder='поиск бургеров...'
+                    placeholder='поиск...'
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.target.value)}
                     onFocus={() => setFocused(true)}
@@ -57,7 +57,6 @@ export const SearchBar: React.FC = () => {
                         key={product.id} 
                         href={`/product/${product.id}`} 
                         className='flex items-center gap-1 hover:bg-primary/10 rounded-sm px-2 '>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img src={product.imageUrl} alt={product.name} className='h-14 w-14' />
                             <div className="px-3 py-2 text-sm text-gray-500">
                                 {product.name}

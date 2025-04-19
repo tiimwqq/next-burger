@@ -34,7 +34,6 @@ model Product {
     category   Category @relation(fields: [categoryId], references: [id])
     categoryId Int
 
-    ingredients  Ingredient[]
     productItems ProductItem[]
 
     createdAt DateTime @default(now())
@@ -45,8 +44,7 @@ model ProductItem {
     id Int @id @default(autoincrement())
 
     size       String?
-    price      Int?
-    burgerType Int?
+    price      Int
 
     product   Product @relation(fields: [productId], references: [id])
     productId Int
@@ -63,9 +61,17 @@ model Ingredient {
     name     String
     imageUrl String
     price    Int
-    products Product[]
 
     cartItems CartItem[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model RollType {
+    id Int @id @default(autoincrement())
+
+    name     String
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt

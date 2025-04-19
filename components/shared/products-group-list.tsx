@@ -8,7 +8,7 @@ import { useCategoryStore } from '@/store/category';
 import { Prisma } from '@prisma/client';
 
 type ProductWithItems = Prisma.ProductGetPayload<{
-  include: { productItems: true; ingredients: true };
+  include: { productItems: true };
 }>;
 
 interface Props {
@@ -39,7 +39,7 @@ export const ProductsGroupList: React.FC<Props> = ({
 
     return (
         <div className={cn(className) + 'my-4 mb-[50px]'} id={title} ref={intersectionRef}>
-            <h2 className='text-2xl font-bold'>{title}</h2>
+            <h2 className='text-2xl font-bold mb-2'>{title}</h2>
 
 
             <div className={cn('grid grid-cols-3 gap-[50px]', listClassName)}>
@@ -53,7 +53,7 @@ export const ProductsGroupList: React.FC<Props> = ({
                             name={product.name}
                             imageUrl={product.imageUrl}
                             price={product.productItems?.[0]?.price ?? 0}
-                            description={products?.[0]?.description ?? ""}
+                            description={product.description ?? ""}
                         />
                     ))}
             </div>

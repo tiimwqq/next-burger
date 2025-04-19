@@ -9,18 +9,18 @@ export type PriceProps = {
 
 type QueryFilters = PriceProps & {
     sizes?: string;
-    ingredients?: string;
+    rollTypes?: string;
 }
 
 export type Filters = {
     price: PriceProps;
     sizes: Set<string>;
-    selectedIngredients: Set<string>;
+    selectedRollsType: Set<string>;
 }
 
 type ReturnFilters = Filters & {
     toggleSizes: (id: string) => void;
-    toggleIngredients: (id: string) => void;
+    toggleRollsType: (id: string) => void;
     updatePrice: (name: keyof PriceProps, value: number) => void;
     setPrice: React.Dispatch<React.SetStateAction<PriceProps>>
 }
@@ -30,11 +30,11 @@ export const useFilters = (): ReturnFilters => {
         priceFrom: searchParams.get("priceFrom") ? Number(searchParams.get("priceFrom")) : undefined,
         priceTo: searchParams.get("priceTo") ? Number(searchParams.get("priceTo")) : undefined,
         sizes: searchParams.get("sizes") ?? undefined,
-        ingredients: searchParams.get("ingredients") ?? undefined,
+        rollTypes: searchParams.get("roll-type") ?? undefined,
     };
     // фильтр ингредиентов
-    const [selectedIngredients, { toggle: toggleIngredients }] = useSet(new Set<string>(
-        searchFilterParams.ingredients ? searchFilterParams.ingredients.split(',') : []
+    const [selectedRollsType, { toggle: toggleRollsType }] = useSet(new Set<string>(
+        searchFilterParams.rollTypes ? searchFilterParams.rollTypes.split(',') : []
     ));
     // фильтр цены
     const [price, setPrice] = useState<PriceProps>({
@@ -54,12 +54,12 @@ export const useFilters = (): ReturnFilters => {
     );
 
     return {
-        selectedIngredients,
+        selectedRollsType,
         price,
         sizes,
         setPrice,
         toggleSizes,
-        toggleIngredients,
+        toggleRollsType,
         updatePrice
     }
 }

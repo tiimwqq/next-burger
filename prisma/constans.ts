@@ -1,26 +1,94 @@
 export const categories = [
-    { name: "Бургеры" },
-    { name: "Комбо" },
+    { name: "Сеты" },
     { name: "Закуски" },
     { name: "Коктейли" },
     { name: "Кофе" },
-    { name: "Напитки" },
     { name: "Десерты" }
 ]
 
-export const burgerIngredients = [
-    { name: "Булочка с кунжутом", price: 49, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/quarter_pounder_bun" },
-    { name: "Булочка ", price: 49, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/regular_bun" },
-    { name: "Котлета говяжья", price: 99, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/DC_Ingredient_202111_00006-417__4076_QuarterPound_FreshBeefPatty_1564x1564" },
-    { name: "Котлета куриная", price: 89, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/t-crispy-chicken-fillet" },
-    { name: "Сыр чеддер", price: 59, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/ingredient_american_cheese_180x180" },
-    { name: "измельченный салат", price: 39, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/shredded_lettuce" },
-    { name: "огурцы", price: 29, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/pickles" },
-    { name: "Свежие томаты", price: 49, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/Ingredients_Tomato_180x180" },
-    { name: "лук", price: 29, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/DC_Ingredient_202110_00028-075__0909_SlicedOnions_1564x1564" },
-    { name: "Соус барбекю", price: 19, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/DC_Ingredient_202111_02679-243__0912_Ketchup_1564x1564" },
-    { name: "Соус горчичный", price: 19, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/DC_Ingredient_202110_00026-041__0910_Mustard_1564x1564" },
-    { name: "Острый перец соус", price: 19, imageUrl: "https://s7d1.scene7.com/is/image/mcdonalds/t-original-spicy-sauce" },
+export const rollTypes = [
+    { name: 'с лососем' },
+    { name: 'с креветкой' },
+    { name: 'с сыром' },
+    { name: 'Каппа маки' },
+    { name: 'Калифорния Чикен' },
+    { name: 'Филадельфия' },
+    { name: 'Бансай' },
+    { name: 'Миссури' },
+    { name: 'Небраска' },
+    { name: 'Чикен Крим' },
+    { name: 'Лава' },
+]
+
+
+export const sushiSets = [
+    {
+        name: "Шок",
+        price: 925,
+        imageUrl: "https://storage.yandexcloud.net/sushi-market/products/product_1847/643786b41548f-450x450.png",
+        description: "Ролл с лососем и шапкой (5 шт.), Ролл с сыром (5 шт.), Ролл с лососем (5 шт.), Ролл с беконом (5 шт.), Ролл с крабом (5 шт.), Ролл с креветкой (5 шт.), Ролл с такуаном (5 шт.), Каппа маки (8 шт.)",
+    },
+    {
+        name: "Ла-ла-лэнд",
+        price: 1315,
+        imageUrl: "https://storage.yandexcloud.net/sushi-market/products/product_1850/64195a3c85ffc-450x450.png",
+        description: "Филадельфия (5 шт.), Калифорния Чикен (5 шт.), Лава (5 шт.), Чикен Крим (5 шт.), Небраска (5 шт.), Юта (5 шт.), Миссури (5 шт.), Ясай маки (5 шт.)",
+    },
+    {
+        name: "Мадагаскар",
+        price: 1699,
+        imageUrl: "https://storage.yandexcloud.net/sushi-market/products/product_1852/64195a82ba897-450x450.png",
+        description: "Бансай (5 шт.), Лава (5 шт.), Филадельфия (10 шт.), Миссури (5 шт.), Чикен Крим (10 шт.), Калифорния (5 шт.), Небраска (5 шт.), Аризона (5 шт.)",
+    },
+    {
+        name: "Джанго",
+        price: 680,
+        imageUrl: "https://storage.yandexcloud.net/sushi-market/products/product_1848/6419564edf962-450x450.png",
+        description: "Миссури (5 шт.), Нагаи (5 шт.), Лава (5 шт.), Аризона (5 шт.)",
+    },
+    {
+        name: "Филадельфийский",
+        price: 1199,
+        imageUrl: "https://storage.yandexcloud.net/sushi-market/products/product_1855/64195d71d876b-450x450.png",
+        description: "Филадельфия (5 шт.), Филадельфия лайт (5 шт.), Сяке маки (8 шт.), Филадельфия с огурцом (5 шт.), Филадельфия люкс (5 шт.)",
+    },
+    {
+        name: "Выгодный",
+        price: 875,
+        imageUrl: "https://storage.yandexcloud.net/sushi-market/products/product_1888/641955f8eb5e9-450x450.png",
+        description: "Бансай (5 шт.), Лава (5 шт.), Калифорния (5 шт.), Юта (5 шт.), Миссури (5 шт.), Неаполь (5 шт.)",
+    },
+    {
+        name: "Прожорливый ниндзя",
+        price: 3100,
+        imageUrl: "https://storage.yandexcloud.net/sushi-market/products/product_2043/64d0bd46080ba-450x450.png",
+        description: "Филадельфия (10 шт.), Чикен Крим (15 шт.), Калифорния (10 шт.), Дракон (10 шт.), Флорида (10 шт.), Ясай маки (10 шт.), Юта (15 шт.), Валенсия (10 шт.), Бостон (5 шт.), Мореман (5 шт.)",
+    },
+    {
+        name: "Довольный самурай",
+        price: 1025,
+        imageUrl: "https://storage.yandexcloud.net/sushi-market/products/product_2045/64d0bd0f993d1-450x450.png",
+        description: "Филадельфия (5 шт.), Калифорния (5 шт.), Бансай (5 шт.), Лава (5 шт.), Чикен Крим (10 шт.)",
+    },
+    {
+        name: "Сытый сумоист",
+        price: 1355,
+        imageUrl: "https://storage.yandexcloud.net/sushi-market/products/product_2045/64d0bd0f993d1-450x450.png",
+        description: "Филадельфия (5 шт.), Калифорния (5 шт.), Дракон (5 шт.), Калифорния Чикен (5 шт.), Ясай маки (5 шт.), Валенсия (5 шт.), Небраска (5 шт.), Монако (10 шт.)",
+    },
+    {
+        name: "Новый хит",
+        price: 925,
+        imageUrl: "https://storage.yandexcloud.net/sushi-market/products/product_2045/64d0bd0f993d1-450x450.png",
+        description: "Ролл Филадельфия (5 шт.), Ролл Калифорния (5 шт.), Ролл Лава (5 шт.), Ролл Нагаи (5 шт.), Ролл Бансай (5 шт.), Ролл Ясай (5 шт.)",
+    },
+];
+
+export const sushiIngredients = [
+    { name: "Имбирь", price: 70, imageUrl: "https://storage.yandexcloud.net/sushi-market/products/product_81/64895cd4bb470-450x450.png" },
+    { name: "Васаби ", price: 50, imageUrl: "https://storage.yandexcloud.net/sushi-market/products/product_83/64896a245cec1-450x450.png" },
+    { name: "Соевый соус", price: 50, imageUrl: "https://storage.yandexcloud.net/sushi-market/products/product_82/64895c8210ff2-450x450.png" },
+    { name: "Кунжутный соус", price: 150, imageUrl: "https://storage.yandexcloud.net/sushi-market/products/product_79/648a854e71217-450x450.png" },
 ].map((obj, i) => ({ id: i + 1, ...obj }));
 
 export const products = [

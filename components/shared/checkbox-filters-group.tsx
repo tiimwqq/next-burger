@@ -29,7 +29,6 @@ export const CheckboxFiltersGroup: React.FC<Props> = (
         onClickCheckBox,
         loading,
         selected,
-        name,
     }
 ) => {
 
@@ -69,16 +68,15 @@ export const CheckboxFiltersGroup: React.FC<Props> = (
 
             <div className="flex flex-col gap-4 max-h-96 overflow-auto scrollbar pr-2">
                 {list
-                    .filter(item => item.text.toLowerCase().includes(searchValue.toLowerCase())) //фильтруем товар по инпуту
+                    .filter(item => item.name.toLowerCase().includes(searchValue.toLowerCase())) //фильтруем товар по инпуту
                     .map((item, index) => (
                         <FilterCheckbox
                             key={index}
-                            text={item.text}
+                            name={item.name}
                             value={item.value}
                             endAdornment={item.endAdornment}
-                            checked={selected?.has(item.value)}
-                            onCheckedChange={() => onClickCheckBox?.(item.value)}
-                            name={name}
+                            checked={selected?.has(item.name)}
+                            onCheckedChange={() => onClickCheckBox?.(item.name)}
                         />
                     ))}
             </div>

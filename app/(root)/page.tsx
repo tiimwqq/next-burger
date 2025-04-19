@@ -10,7 +10,7 @@ export default async function Home() {
 			products: {
 				include: {
 					productItems: true,
-					ingredients: true
+					category: true
 				}
 			}
 		}
@@ -18,7 +18,7 @@ export default async function Home() {
 
 	return (<>
 		<Container className="mt-10">
-			<h1 className="text-3xl font-black">Все бургеры</h1>
+			<h1 className="text-3xl font-extrabold mb-2">Все суши и роллы</h1>
 		</Container>
 		<TopBar categories={categories.filter(category => category.products.length > 0)}/>
 		<Container className="h-auto flex gap-[60px]">
@@ -38,7 +38,6 @@ export default async function Home() {
 							categoryId={category.id}
 						/>
 					))}
-
 			</div>
 		</Container>
 	</>
